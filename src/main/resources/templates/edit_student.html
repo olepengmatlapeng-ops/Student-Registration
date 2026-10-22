@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding:20px; }
+        h1 { text-align: center; margin-bottom:20px; }
+        .form-container { width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 5px; }
+        .form-group { margin-bottom:15px; }
+        label { display:block; margin-bottom: 5px; font-weight: bold; }
+        input { padding:8px; width:100%; }
+        button, a.btn-back {
+            display: inline-block;
+            color: white;
+            cursor:pointer;
+            font-size: 16px;
+            padding:8px 16px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+        }
+        button { background: #28a745; }
+        a.btn-back { background: #6c757d; }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Edit Student</h1>
+    <form th:action="@{/update}" th:object="${student}" method="post">
+        <!-- Hidden field to retain student ID for update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" th:field="*{lastName}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" th:field="*{gender}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="grade">Grade:</label>
+            <input type="number" id="grade" th:field="*{grade}" required />
+        </div>
+
+        <div class="form-group">
+            <a th:href="@{/}" class="btn-back">Back</a>
+            <button type="submit">Update Student</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
